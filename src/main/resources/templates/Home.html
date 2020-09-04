@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>This is my HTML Page</title>
+<!--    <link rel="stylesheet" type="text/css" href="../static/bootstrap-4.5.2-dist/css/bootstrap.min.css">-->
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css/bootstrap.min.css}">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+<!--    <script th:src="@{/jquery/jquery.min.js}"></script>-->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row my-3">
+            <!--side column 1-->
+            <div class="col-lg-3"></div>
+            <!--middle column-->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header text-white bg-primary">
+                        <h1 class="card-title">Welcome to Private Event Manager</h1>
+                    </div>
+                    <div class="card-body">
+                        <!-- radio button form -->
+                        <form action="/select-dates" method="get" id="selection_form">
+                            <div class="form-group">
+                                <h3>Please select what you want to do with us</h3>
+                            </div>
+                            <!-- radio buttons -->
+                            <div class="form-check mb-3">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="optradio" value="view">View your events
+                                </label>
+                            </div>
+                            <!-- end of radio buttons -->
+
+                            <!-- 'next' button -->
+                            <div class="form-group my-2">
+                                <button type="submit" class="btn btn-primary" id="next_btn">Next</button>
+                            </div>
+
+                        </form>
+                        <!-- end of radio button form -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- end of middle column -->
+
+            <!-- side column 2 -->
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+
+<!--    import javascript-->
+<!--    <script src="../static/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>-->
+<!--    <script th:src="@{/js/bootstrap.js/bootstrap.min.js}"></script>-->
+
+</body>
+</html>

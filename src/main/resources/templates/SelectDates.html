@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>This is my HTML Page</title>
+    <!--    <link rel="stylesheet" type="text/css" href="../static/bootstrap-4.5.2-dist/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css/bootstrap.min.css}">-->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <!--    <script th:src="@{/jquery/jquery.min.js}"></script>-->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <div class="row my-3">
+        <!--side column 1-->
+        <div class="col-lg-3"></div>
+        <!--middle column-->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header text-white bg-primary">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img th:src="@{images/calendar_logo.jpg}" alt="calendar image" class="card-img">
+                        </div>
+                        <div class="col-md-9">
+                            <h1 class="card-title">Add Calendar Events</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+
+                    <form action="/login/google" method="post" id="selection_form">
+                        <div class="row p-2">
+                            <!-- radio button form -->
+
+                            <!-- 1st column -->
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="date">From</label>
+                                    <input type="date" name="from_date" class="form-control" id="date">
+                                </div>
+                            </div>
+                            <!-- end of 1st column -->
+
+                            <!-- 2nd column -->
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="date">To</label>
+                                    <input type="date" name="to_date" class="form-control" id="date">
+                                </div>
+                            </div>
+                            <!-- end of 2nd column -->
+
+
+                            <!-- 'next' button -->
+                            <div class="form-group my-2">
+                                <button type="submit" class="btn btn-primary" id="next_btn">View</button>
+                            </div>
+
+                        </div>
+                    </form>
+                <!-- end of radio button form -->
+
+
+                </div>
+            </div>
+        </div>
+        <!-- end of middle column -->
+
+        <!-- side column 2 -->
+        <div class="col-lg-3"></div>
+    </div>
+</div>
+
+</body>
+</html>
