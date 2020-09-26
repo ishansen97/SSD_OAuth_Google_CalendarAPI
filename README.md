@@ -10,3 +10,7 @@ This application was developed to retrieve Google Calendar events of a particula
 * **IntelliJ Ultimate 2020.2**: Integrated Development Environment (IDE)
 * **Google Calendar API**: the resource server API
 * **OAuth 2.0**: the authorization framework
+
+## Prerequisites
+
+* Java version 8: [](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
