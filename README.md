@@ -28,3 +28,5 @@ This application was developed to retrieve Google Calendar events of a particula
 
 * Type http://localhost:8000 on your preferred web browser. the application will be displayed as follows.
 
+![home page](application_first.PNG)
+
