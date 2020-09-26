@@ -13,4 +13,5 @@ This application was developed to retrieve Google Calendar events of a particula
 
 ## Prerequisites
 
-* Java version 8: [](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+* Java version 8: [Java 8 download](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
+* OS should be Windows 10
