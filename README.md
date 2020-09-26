@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This application was developed to retrieve Google Calendar events of a particular user for a given date range. For user authorization, a very reknown authorization framework called OAuth was used. 
+This application was developed to retrieve Google Calendar events of a particular user for a given date range. For user authorization, a very well-known authorization framework called OAuth was used. 
 
 ## Technology Stack
 
@@ -15,3 +15,11 @@ This application was developed to retrieve Google Calendar events of a particula
 
 * Java version 8: [Java 8 download](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)
 * OS should be Windows 10
+* IntelliJ Ultimate 2020.2 must be installed [download here](https://www.jetbrains.com/idea/download/#section=windows)
+* Git command line tool [download here](https://git-scm.com/download/win)
+
+## Installation
+
+* Clone this project to a local directory
+* Open the project from the IntelliJ IDE.
+* Run the application.
