@@ -24,3 +24,5 @@ This application was developed to retrieve Google Calendar events of a particula
 * Open the project from the IntelliJ IDE.
 * Run the application by clicking on the run button as displayed below.
 
+![run application](run.PNG)
+
