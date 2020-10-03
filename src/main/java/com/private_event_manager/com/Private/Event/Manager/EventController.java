@@ -41,6 +41,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+//this class will act as the RESTful API controller
 @RestController
 public class EventController {
 
@@ -76,13 +77,17 @@ public class EventController {
         return "Welcome to the home page";
     }
 
+//    this method will handle getting the authorization code by using OAuth
     @RequestMapping(value = "/login/google", method = RequestMethod.POST)
     public RedirectView googleConnectionStatus(HttpServletRequest request) throws Exception {
+
+//        retrieve parameters from the request
         String strFromDate = request.getParameter("from_date");
         String strToDate = request.getParameter("to_date");
 
         String format = "yyyy-MM-dd";
 
+//        converting the parameters into Date variables
         Date fromDate = new SimpleDateFormat(format).parse(strFromDate);
         Date toDate = new SimpleDateFormat(format).parse(strToDate);
 
@@ -96,7 +101,6 @@ public class EventController {
         session.setAttribute("fromDate", fromDateTime);
         session.setAttribute("toDate", toDateTime);
 
-        System.out.println("session object: " + session.toString());
 
         return new RedirectView(authorize(request));
     }
@@ -126,12 +130,17 @@ public class EventController {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
+
+    //this method will request the authorization server and retrieve the authorization code
     private String authorize(HttpServletRequest request) throws Exception {
         AuthorizationCodeRequestUrl authorizationUrl;
         if (flow == null) {
             Details web = new Details();
+
+            //setting client ID and secret for the request
             web.setClientId(clientId);
             web.setClientSecret(clientSecret);
+
             clientSecrets = new GoogleClientSecrets().setWeb(web);
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
             flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY, clientSecrets,
@@ -147,12 +156,12 @@ public class EventController {
         return authorizationUrl.build();
     }
 
-    //    defining callback path
+    //this method will define the endpoint for the callback path specified by the client while registering its app
     @RequestMapping(method = RequestMethod.GET, path = "/callback")
     public RedirectView getCallBack(HttpServletRequest request) {
 
+        //extracting the authorization code out of the request
         String query_string = request.getQueryString();
-//        System.out.println("query string: " + request.getQueryString());
         String[] params = query_string.split("&");
         String[] auth_code_string_list = params[0].split("=");
         String code = auth_code_string_list[1];
@@ -161,6 +170,7 @@ public class EventController {
         HttpSession session = request.getSession();
         session.setAttribute("code", code);
 
+        //redirecting to the frontend for the user to view calendar events
         return new RedirectView("/viewEvents");
     }
 }

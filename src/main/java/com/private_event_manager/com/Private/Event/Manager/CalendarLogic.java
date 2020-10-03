@@ -28,7 +28,7 @@ public class CalendarLogic {
     private static com.google.api.services.calendar.Calendar client;
 
     private static GoogleClientSecrets clientSecrets;
-//    private static GoogleAuthorizationCodeFlow flow;
+    //    private static GoogleAuthorizationCodeFlow flow;
     private static Credential credential;
 
     @Value("${google.client.redirectUri}")
@@ -40,6 +40,7 @@ public class CalendarLogic {
     final DateTime date2 = new DateTime(new Date());
 
 
+    //    this method will retrieve events from the user's Google Calendar
     public static List<Event> getEvents(String code, GoogleAuthorizationCodeFlow flow, DateTime fromDate, DateTime toDate) {
 
         Calendar.Events.Insert result = null;
@@ -50,44 +51,27 @@ public class CalendarLogic {
 
         String message;
         try {
+            //initiating a request to obtain the access token
             httpTransport = GoogleNetHttpTransport.newTrustedTransport();
             System.out.println("before getting the token");
             TokenResponse response = flow.newTokenRequest(code).setRedirectUri(redirectURI).execute();
             credential = flow.createAndStoreCredential(response, "userID");
             client = new com.google.api.services.calendar.Calendar.Builder(httpTransport, JSON_FACTORY, credential)
                     .setApplicationName(APPLICATION_NAME).build();
+
+            //getting access to the calendar events
             Calendar.Events events = client.events();
 
+            //retrieving the events within specified date range
             eventList = events.list("primary").setTimeMin(fromDate).setTimeMax(toDate).execute();
-            int length = eventList.getItems().toArray().length;
-            message = eventList.getItems().get(0).toString();
-            newEvent = eventList.getItems().get(length - 1);
             list = eventList.getItems();
 
         } catch (Exception e) {
             System.out.println("warning: " + e.getMessage());
             return null;
         }
+        //return the calendar events
         return list;
-//        return event;
     }
 
-    // this method will authorize the user
-//    public static String authorize() throws Exception {
-//        AuthorizationCodeRequestUrl authorizationUrl;
-//        if (flow == null) {
-//            GoogleClientSecrets.Details web = new GoogleClientSecrets.Details();
-//            web.setClientId(clientId);
-//            web.setClientSecret(clientSecret);
-//            clientSecrets = new GoogleClientSecrets().setWeb(web);
-//            httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-//            flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY, clientSecrets,
-//                    Collections.singleton(CalendarScopes.CALENDAR)).build();
-//        }
-//        authorizationUrl = flow.newAuthorizationUrl().setRedirectUri(redirectURI);
-//        String code = (String) authorizationUrl.get("code");
-//        System.out.println("code: " + code);
-////        System.out.println("cal authorizationUrl->" + authorizationUrl);
-//        return authorizationUrl.build();
-//    }
 }

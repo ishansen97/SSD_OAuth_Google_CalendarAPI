@@ -26,62 +26,25 @@ public class ModelController {
     //    this method will retrieve the home page
     @RequestMapping("/")
     public String Home() {
-        return "home";
+        return "Home";
     }
 
+//    this method will retrieve the select-dates page
     @RequestMapping("/select-dates")
     public String RedirectToSelectDates() {
         return "SelectDates";
     }
+
 
     @RequestMapping("/view")
     public String ViewEvent() {
         return "View";
     }
 
-//    @RequestMapping(value = "/addEvent", method = RequestMethod.GET)
-//    public RedirectView AddEvent(HttpServletRequest request) {
-//
-//        EventDateTime eventDateTime = new EventDateTime();
-//        String format = "yyyy-MM-dd hh:mm";
-//
-//        ModelAndView modelAndView = new ModelAndView();
-//        try {
-//            Event event = new Event();
-////            String event_date = privateEvent.getDate();
-//
-////            System.out.println("date: " + event_date);
-////            String start_time = privateEvent.getStart();
-////            String end_time = privateEvent.getEnd();
-////            String start_datetime = event_date + " " + start_time;
-////            String end_datetime = event_date + " " + end_time;
-////            Date startDate = new SimpleDateFormat(format).parse(start_datetime);
-////            Date endDate = new SimpleDateFormat(format).parse(end_datetime);
-////
-////            //setting values
-////            event.setSummary(privateEvent.getSummary());
-////            event.setDescription(privateEvent.getDescription());
-////            event.setStart(new EventDateTime().setDate(new DateTime(startDate)));
-////            event.setEnd(new EventDateTime().setDate(new DateTime(endDate)));
-//
-//            //add the event
-////            String response = CalendarLogic.addEvents(event);
-////            String response = CalendarLogic.authorize();
-////            System.out.println("response: " + response);
-////
-////            modelAndView.setViewName("test-add");
-////            modelAndView.addObject("event", event);
-//            return new RedirectView(CalendarLogic.authorize());
-//        } catch (Exception ex) {
-//            modelAndView.setViewName("400");
-//            return null;
-//        }
-//    }
-
+    //this method will redirect user to the view their calendar events
     @RequestMapping(value = "/viewEvents", method = RequestMethod.GET)
     public ModelAndView ViewEvents(HttpServletRequest request) {
         HttpSession session = request.getSession();
-
 
         //get the authorization code from the session storage
         String code = (String) session.getAttribute("code");
@@ -90,17 +53,16 @@ public class ModelController {
         DateTime fromDate = (DateTime) session.getAttribute("fromDate");
         DateTime toDate = (DateTime) session.getAttribute("toDate");
 
+        //get the 'GoogleAuthorizationCodeFlow' object from the session storage
         GoogleAuthorizationCodeFlow flow = (GoogleAuthorizationCodeFlow) session.getAttribute("flow");
 
-        //add the event information to the Google Calendar
+        //retrieve the Google Calendar events
         List<Event> result = CalendarLogic.getEvents(code, flow, fromDate, toDate);
 
-//        System.out.println("Result: " + result);
 
-
+        //setting up the data to be displayed in the frontend page
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("View");
-//        modelAndView.addObject("event", event);
         modelAndView.addObject("events", result);
         modelAndView.addObject("regex", "T");
 
