@@ -34,9 +34,9 @@ This application was developed to retrieve Google Calendar events of a particula
 
 * ## Frontend
 
-** **Home.html** - Display the home page
-** **SelectDates.html** - Display the "Select dates" option page
-** **view.html** - Display the user's calendar events
+* **Home.html** - Display the home page
+* **SelectDates.html** - Display the "Select dates" option page
+* **view.html** - Display the user's calendar events
 
 * ## Backend
 
