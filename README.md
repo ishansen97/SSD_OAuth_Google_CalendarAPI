@@ -30,3 +30,7 @@ This application was developed to retrieve Google Calendar events of a particula
 
 ![home page](application_first.PNG)
 
+## Important project files (for marking)
+
+
+
