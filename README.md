@@ -40,3 +40,7 @@ This application was developed to retrieve Google Calendar events of a particula
 
 * ## Backend
 
+* **EventController.java** - Acts as the RESTful API of the application (containes the request sent to the authorization server)
+* **ModelController.java** - Contains the mappings to the frontend templates 
+* **CalendarLogic.java** - Implements the logic for retrieving calendar events for the user
+
